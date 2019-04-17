@@ -1,4 +1,4 @@
-![BitBag](https://bitbag.pl/static/bitbag-logo.png)
+![Waaz](https://bitbag.pl/static/bitbag-logo.png)
 
 
 ## Overview
@@ -8,16 +8,16 @@ This plugin enables using Mercanet BNP Paribas payments in Sylius based stores.
 ## Support
 
 We work on amazing eCommerce projects on top of Sylius and Pimcore. Need some help or additional resources for a project?
-Write us an email on mikolaj.krol@bitbag.pl or visit [our website](https://bitbag.shop/)! :rocket:
+Write us an email on developpement@studiowaaz.com or visit [our website](https://www.studiowaaz.com/)! :rocket:
 
 ## Demo
 
-We created a demo app with some useful use-cases of the plugin! Visit [demo.bitbag.shop](https://demo.bitbag.shop) to take a look at it. 
-The admin can be accessed under [demo.bitbag.shop/admin](https://demo.bitbag.shop/admin) link and `sylius: sylius` credentials.
+We created a demo app with some useful use-cases of the plugin! Visit [demo.www.studiowaaz.com](https://demo.www.studiowaaz.com) to take a look at it. 
+The admin can be accessed under [demo.www.studiowaaz.com/admin](https://demo.www.studiowaaz.com/admin) link and `sylius: sylius` credentials.
 
 ## Installation
 ```bash
-$ composer require bitbag/mercanet-bnp-paribas-plugin
+$ composer require waaz/system-pay-plugin
 ```
     
 Add plugin dependencies to your AppKernel.php file:
@@ -27,7 +27,7 @@ public function registerBundles()
     return array_merge(parent::registerBundles(), [
         ...
         
-        new \BitBag\MercanetBnpParibasPlugin\BitBagMercanetBnpParibasPlugin(),
+        new \Waaz\SystemPayPlugin\WaazSystemPayPlugin(),
     ]);
 }
 ```

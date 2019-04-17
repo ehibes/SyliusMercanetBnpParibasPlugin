@@ -1,41 +1,41 @@
 <?php
 
 /**
- * This file was created by the developers from BitBag.
+ * This file was created by the developers from Waaz.
  * Feel free to contact us once you face any issues or want to start
  * another great project.
- * You can find more information about us on https://bitbag.shop and write us
- * an email on kontakt@bitbag.pl.
+ * You can find more information about us on https://www.studiowaaz.com and write us
+ * an email on developpement@studiowaaz.com.
  */
 
-namespace Tests\BitBag\MercanetBnpParibasPlugin\Behat\Page\Admin\PaymentMethod;
+namespace Tests\Waaz\SystemPayPlugin\Behat\Page\Admin\PaymentMethod;
 
 use Sylius\Behat\Page\Admin\Crud\CreatePageInterface as BaseCreatePageInterface;
 
 /**
- * @author Patryk Drapik <patryk.drapik@bitbag.pl>
+ * @author Ibes Mongabure <developpement@studiowaaz.com>
  */
 interface CreatePageInterface extends BaseCreatePageInterface
 {
     /**
      * @param string $secretKey
      */
-    public function setMercanetBnpParibasPluginGatewaySecretKey($secretKey);
+    public function setSystemPayPluginGatewaySecretKey($secretKey);
 
     /**
      * @param string $merchantId
      */
-    public function setMercanetBnpParibasPluginGatewayMerchantId($merchantId);
+    public function setSystemPayPluginGatewayMerchantId($merchantId);
 
     /**
      * @param string $keyVersion
      */
-    public function setMercanetBnpParibasPluginGatewayKeyVersion($keyVersion);
+    public function setSystemPayPluginGatewayKeyVersion($keyVersion);
 
     /**
      * @param string $environment
      */
-    public function setMercanetBnpParibasPluginGatewayEnvironment($environment);
+    public function setSystemPayPluginGatewayEnvironment($environment);
 
     /**
      * @param string $message

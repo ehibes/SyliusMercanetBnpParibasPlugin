@@ -5,10 +5,10 @@
  * We are not the authors of the core logic of this class.
  */
 
-namespace BitBag\MercanetBnpParibasPlugin\Legacy;
+namespace Waaz\SystemPayPlugin\Legacy;
 
 /**
- * @author Mikołaj Król <mikolaj.krol@bitbag.pl> READ THE FILE HEADER.
+ * @author Ibes Mongabure <developpement@studiowaaz.com> READ THE FILE HEADER.
  */
 class Mercanet
 {

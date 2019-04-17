@@ -1,4 +1,4 @@
-@paying_with_mercanet_bnp_paribas_for_order
+@paying_with_system_pay_for_order
 Feature: Paying with Mercanet Bnp Paribas during checkout
     In order to buy products
     As a Customer
@@ -6,11 +6,11 @@ Feature: Paying with Mercanet Bnp Paribas during checkout
 
     Background:
         Given the store operates on a single channel in "United States"
-        And there is a user "john@bitbag.pl" identified by "password123"
-        And the store has a payment method "Mercanet Bnp Paribas" with a code "mercanet_bnp_paribas" and Mercanet Bnp Paribas Checkout gateway
+        And there is a user "developpement@studiowaaz.com" identified by "password123"
+        And the store has a payment method "Mercanet Bnp Paribas" with a code "system_pay" and Mercanet Bnp Paribas Checkout gateway
         And the store has a product "PHP T-Shirt" priced at "€19.99"
         And the store ships everywhere for free
-        And I am logged in as "john@bitbag.pl"
+        And I am logged in as "developpement@studiowaaz.com"
 
     @ui
     Scenario: Successful payment

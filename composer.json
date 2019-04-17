@@ -1,16 +1,12 @@
 {
-    "name": "bitbag/mercanet-bnp-paribas-plugin",
+    "name": "waaz/system-pay-plugin",
     "type": "sylius-plugin",
     "description": "Mercanet BNP Paribas payment plugin for Sylius applications.",
     "license": "MIT",
     "authors": [
         {
-            "name": "Mikołaj Król",
-            "email": "mikolaj.krol@bitbag.pl"
-        },
-        {
-            "name": "Patryk Drapik",
-            "email": "patryk.drapik@bitbag.pl"
+            "name": "Ibes Mongabure",
+            "email": "developpement@studiowaaz.com"
         }
     ],
     "require": {
@@ -36,8 +32,8 @@
     },
     "autoload": {
         "psr-4": {
-            "BitBag\\MercanetBnpParibasPlugin\\": "src/",
-            "Tests\\BitBag\\MercanetBnpParibasPlugin\\": "tests/"
+            "Waaz\\SystemPayPlugin\\": "src/",
+            "Tests\\Waaz\\SystemPayPlugin\\": "tests/"
         }
     },
     "autoload-dev": {

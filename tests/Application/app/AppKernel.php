@@ -1,11 +1,11 @@
 <?php
 
 /**
- * This file was created by the developers from BitBag.
+ * This file was created by the developers from Waaz.
  * Feel free to contact us once you face any issues or want to start
  * another great project.
- * You can find more information about us on https://bitbag.shop and write us
- * an email on kontakt@bitbag.pl.
+ * You can find more information about us on https://www.studiowaaz.com and write us
+ * an email on developpement@studiowaaz.com.
  */
 
 declare(strict_types=1);
@@ -15,7 +15,7 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 use PSS\SymfonyMockerContainer\DependencyInjection\MockerContainer;
 
 /**
- * @author Patryk Drapik <patryk.drapik@bitbag.pl>
+ * @author Ibes Mongabure <developpement@studiowaaz.com>
  */
 class AppKernel extends Kernel
 {
@@ -31,7 +31,7 @@ class AppKernel extends Kernel
             new \FOS\OAuthServerBundle\FOSOAuthServerBundle(), // Required by SyliusApiBundle
             new \Sylius\Bundle\AdminApiBundle\SyliusAdminApiBundle(),
 
-            new \BitBag\MercanetBnpParibasPlugin\BitBagMercanetBnpParibasPlugin(),
+            new \Waaz\SystemPayPlugin\WaazSystemPayPlugin(),
         ]);
     }
 

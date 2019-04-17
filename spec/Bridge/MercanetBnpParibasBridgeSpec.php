@@ -1,31 +1,31 @@
 <?php
 
 /**
- * This file was created by the developers from BitBag.
+ * This file was created by the developers from Waaz.
  * Feel free to contact us once you face any issues or want to start
  * another great project.
- * You can find more information about us on https://bitbag.shop and write us
- * an email on kontakt@bitbag.pl.
+ * You can find more information about us on https://www.studiowaaz.com and write us
+ * an email on developpement@studiowaaz.com.
  */
 
-namespace spec\BitBag\MercanetBnpParibasPlugin\Bridge;
+namespace spec\Waaz\SystemPayPlugin\Bridge;
 
-use BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridge;
-use BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridgeInterface;
-use BitBag\MercanetBnpParibasPlugin\Legacy\Mercanet;
+use Waaz\SystemPayPlugin\Bridge\SystemPayBridge;
+use Waaz\SystemPayPlugin\Bridge\SystemPayBridgeInterface;
+use Waaz\SystemPayPlugin\Legacy\Mercanet;
 use PhpSpec\ObjectBehavior;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- * @author Patryk Drapik <patryk.drapik@bitbag.pl>
+ * @author Ibes Mongabure <developpement@studiowaaz.com>
  */
-final class MercanetBnpParibasBridgeSpec extends ObjectBehavior
+final class SystemPayBridgeSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType(MercanetBnpParibasBridge::class);
-        $this->shouldHaveType(MercanetBnpParibasBridgeInterface::class);
+        $this->shouldHaveType(SystemPayBridge::class);
+        $this->shouldHaveType(SystemPayBridgeInterface::class);
     }
 
     function let(RequestStack $requestStack)

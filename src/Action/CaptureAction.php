@@ -1,17 +1,17 @@
 <?php
 
 /**
- * This file was created by the developers from BitBag.
+ * This file was created by the developers from Waaz.
  * Feel free to contact us once you face any issues or want to start
  * another great project.
- * You can find more information about us on https://bitbag.shop and write us
- * an email on kontakt@bitbag.pl.
+ * You can find more information about us on https://www.studiowaaz.com and write us
+ * an email on developpement@studiowaaz.com.
  */
 
-namespace BitBag\MercanetBnpParibasPlugin\Action;
+namespace Waaz\SystemPayPlugin\Action;
 
-use BitBag\MercanetBnpParibasPlugin\Legacy\SimplePayment;
-use BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridgeInterface;
+use Waaz\SystemPayPlugin\Legacy\SimplePayment;
+use Waaz\SystemPayPlugin\Bridge\SystemPayBridgeInterface;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\ApiAwareInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
@@ -25,8 +25,8 @@ use Webmozart\Assert\Assert;
 use Payum\Core\Payum;
 
 /**
- * @author Mikołaj Król <mikolaj.krol@bitbag.pl>
- * @author Patryk Drapik <patryk.drapik@bitbag.pl>
+ * @author Ibes Mongabure <developpement@studiowaaz.com>
+ * @author Ibes Mongabure <developpement@studiowaaz.com>
  */
 final class CaptureAction implements ActionInterface, ApiAwareInterface
 {
@@ -38,9 +38,9 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
     private $payum;
 
     /**
-     * @var MercanetBnpParibasBridgeInterface
+     * @var SystemPayBridgeInterface
      */
-    private $mercanetBnpParibasBridge;
+    private $systemPayBridge;
 
     /**
      * @param Payum $payum
@@ -53,13 +53,13 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
     /**
      * {@inheritDoc}
      */
-    public function setApi($mercanetBnpParibasBridge)
+    public function setApi($systemPayBridge)
     {
-        if (!$mercanetBnpParibasBridge instanceof MercanetBnpParibasBridgeInterface) {
+        if (!$systemPayBridge instanceof SystemPayBridgeInterface) {
             throw new UnsupportedApiException('Not supported.');
         }
 
-        $this->mercanetBnpParibasBridge = $mercanetBnpParibasBridge;
+        $this->systemPayBridge = $systemPayBridge;
     }
 
     /**
@@ -84,9 +84,9 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
         if ($transactionReference !== null) {
 
-            if ($this->mercanetBnpParibasBridge->isPostMethod()) {
+            if ($this->systemPayBridge->isPostMethod()) {
 
-                $model['status'] = $this->mercanetBnpParibasBridge->paymentVerification() ?
+                $model['status'] = $this->systemPayBridge->paymentVerification() ?
                     PaymentInterface::STATE_COMPLETED : PaymentInterface::STATE_CANCELLED;
 
                 $request->setModel($model);
@@ -102,13 +102,13 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
         $notifyToken = $this->createNotifyToken($token->getGatewayName(), $token->getDetails());
 
-        $secretKey = $this->mercanetBnpParibasBridge->getSecretKey();
+        $secretKey = $this->systemPayBridge->getSecretKey();
 
-        $mercanet = $this->mercanetBnpParibasBridge->createMercanet($secretKey);
+        $mercanet = $this->systemPayBridge->createMercanet($secretKey);
 
-        $environment = $this->mercanetBnpParibasBridge->getEnvironment();
-        $merchantId = $this->mercanetBnpParibasBridge->getMerchantId();
-        $keyVersion = $this->mercanetBnpParibasBridge->getKeyVersion();
+        $environment = $this->systemPayBridge->getEnvironment();
+        $merchantId = $this->systemPayBridge->getMerchantId();
+        $keyVersion = $this->systemPayBridge->getKeyVersion();
 
         $automaticResponseUrl = $notifyToken->getTargetUrl();
         $currencyCode = $payment->getCurrencyCode();

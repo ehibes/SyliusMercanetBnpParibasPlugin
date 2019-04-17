@@ -1,17 +1,17 @@
 <?php
 
 /**
- * This file was created by the developers from BitBag.
+ * This file was created by the developers from Waaz.
  * Feel free to contact us once you face any issues or want to start
  * another great project.
- * You can find more information about us on https://bitbag.shop and write us
- * an email on kontakt@bitbag.pl.
+ * You can find more information about us on https://www.studiowaaz.com and write us
+ * an email on developpement@studiowaaz.com.
  */
 
-namespace Tests\BitBag\MercanetBnpParibasPlugin\Behat\Context\Setup;
+namespace Tests\Waaz\SystemPayPlugin\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
-use BitBag\MercanetBnpParibasPlugin\Legacy\Mercanet;
+use Waaz\SystemPayPlugin\Legacy\Mercanet;
 use Sylius\Behat\Service\SharedStorageInterface;
 use Sylius\Bundle\CoreBundle\Fixture\Factory\ExampleFactoryInterface;
 use Sylius\Component\Core\Model\PaymentMethodInterface;
@@ -20,9 +20,9 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
- * @author Patryk Drapik <patryk.drapik@bitbag.pl>
+ * @author Ibes Mongabure <developpement@studiowaaz.com>
  */
-final class MercanetBnpParibasContext implements Context
+final class SystemPayContext implements Context
 {
     /**
      * @var SharedStorageInterface
@@ -73,7 +73,7 @@ final class MercanetBnpParibasContext implements Context
     /**
      * @Given the store has a payment method :paymentMethodName with a code :paymentMethodCode and Mercanet Bnp Paribas Checkout gateway
      */
-    public function theStoreHasAPaymentMethodWithACodeAndMercanetBnpParibasCheckoutGateway(
+    public function theStoreHasAPaymentMethodWithACodeAndSystemPayCheckoutGateway(
         $paymentMethodName,
         $paymentMethodCode
     ) {
@@ -83,7 +83,7 @@ final class MercanetBnpParibasContext implements Context
             'merchant_id' => 'TEST',
             'key_version' => 'TEST',
             'secret_key' => 'TEST',
-            'payum.http_client' => '@bitbag.mercanet_bnp_paribas.bridge.mercanet_bnp_paribas_bridge',
+            'payum.http_client' => '@waaz.system_pay.bridge.system_pay_bridge',
         ]);
 
         $this->paymentMethodManager->flush();
@@ -111,8 +111,8 @@ final class MercanetBnpParibasContext implements Context
             'name' => ucfirst($name),
             'code' => $code,
             'description' => $description,
-            'gatewayName' => 'mercanet_bnp_paribas',
-            'gatewayFactory' => 'mercanet_bnp_paribas',
+            'gatewayName' => 'system_pay',
+            'gatewayFactory' => 'system_pay',
             'enabled' => true,
             'channels' => ($addForCurrentChannel && $this->sharedStorage->has('channel')) ? [$this->sharedStorage->get('channel')] : [],
         ]);

@@ -1,17 +1,17 @@
 <?php
 
 /**
- * This file was created by the developers from BitBag.
+ * This file was created by the developers from Waaz.
  * Feel free to contact us once you face any issues or want to start
  * another great project.
- * You can find more information about us on https://bitbag.shop and write us
- * an email on kontakt@bitbag.pl.
+ * You can find more information about us on https://www.studiowaaz.com and write us
+ * an email on developpement@studiowaaz.com.
  */
 
-namespace spec\BitBag\MercanetBnpParibasPlugin\Action;
+namespace spec\Waaz\SystemPayPlugin\Action;
 
-use BitBag\MercanetBnpParibasPlugin\Action\NotifyAction;
-use BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridgeInterface;
+use Waaz\SystemPayPlugin\Action\NotifyAction;
+use Waaz\SystemPayPlugin\Bridge\SystemPayBridgeInterface;
 use Payum\Core\Request\Notify;
 use PhpSpec\ObjectBehavior;
 use SM\Factory\FactoryInterface;
@@ -20,16 +20,16 @@ use Sylius\Component\Core\Model\PaymentInterface;
 use Sylius\Component\Payment\PaymentTransitions;
 
 /**
- * @author Patryk Drapik <patryk.drapik@bitbag.pl>
+ * @author Ibes Mongabure <developpement@studiowaaz.com>
  */
 final class NotifyActionSpec extends ObjectBehavior
 {
     function let(
-        MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge,
+        SystemPayBridgeInterface $systemPayBridge,
         FactoryInterface $stateMachineFactory
     ) {
         $this->beConstructedWith($stateMachineFactory);
-        $this->setApi($mercanetBnpParibasBridge);
+        $this->setApi($systemPayBridge);
     }
 
     function it_is_initializable()
@@ -40,15 +40,15 @@ final class NotifyActionSpec extends ObjectBehavior
     function it_execute(
         Notify $request,
         \ArrayObject $arrayObject,
-        MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge,
+        SystemPayBridgeInterface $systemPayBridge,
         PaymentInterface $payment,
         FactoryInterface $stateMachineFactory,
         StateMachineInterface $stateMachine
     ) {
         $request->getModel()->willReturn($arrayObject);
         $request->getFirstModel()->willReturn($payment);
-        $mercanetBnpParibasBridge->isPostMethod()->willReturn(true);
-        $mercanetBnpParibasBridge->paymentVerification()->willReturn(true);
+        $systemPayBridge->isPostMethod()->willReturn(true);
+        $systemPayBridge->paymentVerification()->willReturn(true);
         $stateMachineFactory->get($payment, PaymentTransitions::GRAPH)->willReturn($stateMachine);
 
         $stateMachine->apply(PaymentTransitions::TRANSITION_COMPLETE)->shouldBeCalled();

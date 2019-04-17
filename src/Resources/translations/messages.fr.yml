@@ -1,5 +1,5 @@
 bitbag:
-    mercanet_bnp_paribas:
+    system_pay:
         environment: Environnement
         secure_key: Clé de sécurité
         merchant_id: ID marchand

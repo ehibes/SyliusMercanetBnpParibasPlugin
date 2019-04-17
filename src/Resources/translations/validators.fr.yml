@@ -1,5 +1,5 @@
 bitbag:
-    mercanet_bnp_paribas:
+    system_pay:
         merchant_id:
             not_blank: Entrez l'identifiant du marchand.
         key_version:

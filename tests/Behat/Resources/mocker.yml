@@ -1,5 +1,5 @@
 services:
-    bitbag.mercanet_bnp_paribas_plugin.mocker.mercanet_bnp_paribas:
-        class: Tests\BitBag\MercanetBnpParibasPlugin\Behat\Mocker\MercanetBnpParibasMocker
+    waaz.system_pay_plugin.mocker.system_pay:
+        class: Tests\Waaz\SystemPayPlugin\Behat\Mocker\SystemPayMocker
         arguments:
             - '@sylius.behat.mocker'

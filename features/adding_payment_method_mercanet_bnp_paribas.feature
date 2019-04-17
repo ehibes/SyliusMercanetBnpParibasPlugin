@@ -1,4 +1,4 @@
-@managing_payment_method_mercanet_bnp_paribas
+@managing_payment_method_system_pay
 Feature: Adding a new payment method
     In order to pay for orders in different ways
     As an Administrator

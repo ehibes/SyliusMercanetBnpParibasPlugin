@@ -1,21 +1,21 @@
 <?php
 
 /**
- * This file was created by the developers from BitBag.
+ * This file was created by the developers from Waaz.
  * Feel free to contact us once you face any issues or want to start
  * another great project.
- * You can find more information about us on https://bitbag.shop and write us
- * an email on kontakt@bitbag.pl.
+ * You can find more information about us on https://www.studiowaaz.com and write us
+ * an email on developpement@studiowaaz.com.
  */
 
-namespace Tests\BitBag\MercanetBnpParibasPlugin\Behat\Context\Ui\Admin;
+namespace Tests\Waaz\SystemPayPlugin\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Context\Context;
-use Tests\BitBag\MercanetBnpParibasPlugin\Behat\Page\Admin\PaymentMethod\CreatePageInterface;
+use Tests\Waaz\SystemPayPlugin\Behat\Page\Admin\PaymentMethod\CreatePageInterface;
 use Webmozart\Assert\Assert;
 
 /**
- * @author Patryk Drapik <patryk.drapik@bitbag.pl>
+ * @author Ibes Mongabure <developpement@studiowaaz.com>
  */
 final class ManagingPaymentMethodsContext implements Context
 {
@@ -35,20 +35,20 @@ final class ManagingPaymentMethodsContext implements Context
     /**
      * @Given I want to create a new payment method with Mercanet BNP Paribas gateway factory
      */
-    public function iWantToCreateANewPaymentMethodWithMercanetBnpParibasGatewayFactory()
+    public function iWantToCreateANewPaymentMethodWithSystemPayGatewayFactory()
     {
-        $this->createPage->open(['factory' => 'mercanet_bnp_paribas']);
+        $this->createPage->open(['factory' => 'system_pay']);
     }
 
     /**
      * @When I configure it with test Mercanet BNP Paribas credentials
      */
-    public function iConfigureItWithTestMercanetBnpParibasCredentials()
+    public function iConfigureItWithTestSystemPayCredentials()
     {
-        $this->createPage->setMercanetBnpParibasPluginGatewaySecretKey('test');
-        $this->createPage->setMercanetBnpParibasPluginGatewayMerchantId('test');
-        $this->createPage->setMercanetBnpParibasPluginGatewayKeyVersion('test');
-        $this->createPage->setMercanetBnpParibasPluginGatewayEnvironment('Test');
+        $this->createPage->setSystemPayPluginGatewaySecretKey('test');
+        $this->createPage->setSystemPayPluginGatewayMerchantId('test');
+        $this->createPage->setSystemPayPluginGatewayKeyVersion('test');
+        $this->createPage->setSystemPayPluginGatewayEnvironment('Test');
     }
 
     /**

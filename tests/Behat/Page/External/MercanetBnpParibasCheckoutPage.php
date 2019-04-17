@@ -1,14 +1,14 @@
 <?php
 
 /**
- * This file was created by the developers from BitBag.
+ * This file was created by the developers from Waaz.
  * Feel free to contact us once you face any issues or want to start
  * another great project.
- * You can find more information about us on https://bitbag.shop and write us
- * an email on kontakt@bitbag.pl.
+ * You can find more information about us on https://www.studiowaaz.com and write us
+ * an email on developpement@studiowaaz.com.
  */
 
-namespace Tests\BitBag\MercanetBnpParibasPlugin\Behat\Page\External;
+namespace Tests\Waaz\SystemPayPlugin\Behat\Page\External;
 
 use Behat\Mink\Session;
 use Payum\Core\Security\TokenInterface;
@@ -16,9 +16,9 @@ use Sylius\Behat\Page\Page;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 /**
- * @author Patryk Drapik <patryk.drapik@bitbag.pl>
+ * @author Ibes Mongabure <developpement@studiowaaz.com>
  */
-final class MercanetBnpParibasCheckoutPage extends Page implements MercanetBnpParibasCheckoutPageInterface
+final class SystemPayCheckoutPage extends Page implements SystemPayCheckoutPageInterface
 {
     /**
      * @var RepositoryInterface

@@ -39,11 +39,11 @@ default:
                 - sylius.behat.context.ui.shop.checkout.shipping
                 - sylius.behat.context.ui.shop.checkout.thank_you
 
-                - bitbag.mercanet_bnp_paribas_plugin.context.setup.mercanet_bnp_paribas
+                - waaz.system_pay_plugin.context.setup.system_pay
 
-                - bitbag.mercanet_bnp_paribas_plugin.context.ui.shop.mercanet_bnp_paribas
+                - waaz.system_pay_plugin.context.ui.shop.system_pay
             filters:
-                tags: "@paying_with_mercanet_bnp_paribas_for_order && @ui"
+                tags: "@paying_with_system_pay_for_order && @ui"
         ui_managing_payment_methods:
             contexts_services:
                 - sylius.behat.context.hook.doctrine_orm
@@ -71,7 +71,7 @@ default:
                 - sylius.behat.context.ui.admin.notification
                 - sylius.behat.context.ui.shop.locale
 
-                - bitbag.mercanet_bnp_paribas_plugin.context.setup.channel
-                - bitbag.mercanet_bnp_paribas_plugin.context.ui.admin.managing_payment_methods
+                - waaz.system_pay_plugin.context.setup.channel
+                - waaz.system_pay_plugin.context.ui.admin.managing_payment_methods
             filters:
-                tags: "@managing_payment_method_mercanet_bnp_paribas && @ui"
+                tags: "@managing_payment_method_system_pay && @ui"

@@ -1,30 +1,30 @@
 <?php
 
 /**
- * This file was created by the developers from BitBag.
+ * This file was created by the developers from Waaz.
  * Feel free to contact us once you face any issues or want to start
  * another great project.
- * You can find more information about us on https://bitbag.shop and write us
- * an email on kontakt@bitbag.pl.
+ * You can find more information about us on https://www.studiowaaz.com and write us
+ * an email on developpement@studiowaaz.com.
  */
 
-namespace Tests\BitBag\MercanetBnpParibasPlugin\Behat\Context\Ui\Shop;
+namespace Tests\Waaz\SystemPayPlugin\Behat\Context\Ui\Shop;
 
 use Behat\Behat\Context\Context;
 use Sylius\Behat\Page\Shop\Checkout\CompletePageInterface;
 use Sylius\Behat\Page\Shop\Order\ShowPageInterface;
-use Tests\BitBag\MercanetBnpParibasPlugin\Behat\Mocker\MercanetBnpParibasMocker;
-use Tests\BitBag\MercanetBnpParibasPlugin\Behat\Page\External\MercanetBnpParibasCheckoutPageInterface;
+use Tests\Waaz\SystemPayPlugin\Behat\Mocker\SystemPayMocker;
+use Tests\Waaz\SystemPayPlugin\Behat\Page\External\SystemPayCheckoutPageInterface;
 
 /**
- * @author Patryk Drapik <patryk.drapik@bitbag.pl>
+ * @author Ibes Mongabure <developpement@studiowaaz.com>
  */
-final class MercanetBnpParibasContext implements Context
+final class SystemPayContext implements Context
 {
     /**
-     * @var MercanetBnpParibasMocker
+     * @var SystemPayMocker
      */
-    private $mercanetBnpParibasMocker;
+    private $systemPayMocker;
 
     /**
      * @var CompletePageInterface
@@ -32,9 +32,9 @@ final class MercanetBnpParibasContext implements Context
     private $summaryPage;
 
     /**
-     * @var MercanetBnpParibasCheckoutPageInterface
+     * @var SystemPayCheckoutPageInterface
      */
-    private $mercanetBnpParibasCheckoutPage;
+    private $systemPayCheckoutPage;
 
     /**
      * @var ShowPageInterface
@@ -43,28 +43,28 @@ final class MercanetBnpParibasContext implements Context
 
     /**
      * @param CompletePageInterface $summaryPage
-     * @param MercanetBnpParibasMocker $mercanetBnpParibasMocker
-     * @param MercanetBnpParibasCheckoutPageInterface $mercanetBnpParibasCheckoutPage
+     * @param SystemPayMocker $systemPayMocker
+     * @param SystemPayCheckoutPageInterface $systemPayCheckoutPage
      * @param ShowPageInterface $orderDetails
      */
     public function __construct(
-        MercanetBnpParibasMocker $mercanetBnpParibasMocker,
+        SystemPayMocker $systemPayMocker,
         CompletePageInterface $summaryPage,
-        MercanetBnpParibasCheckoutPageInterface $mercanetBnpParibasCheckoutPage,
+        SystemPayCheckoutPageInterface $systemPayCheckoutPage,
         ShowPageInterface $orderDetails
     )
     {
         $this->orderDetails = $orderDetails;
-        $this->mercanetBnpParibasCheckoutPage = $mercanetBnpParibasCheckoutPage;
+        $this->systemPayCheckoutPage = $systemPayCheckoutPage;
         $this->summaryPage = $summaryPage;
-        $this->mercanetBnpParibasMocker = $mercanetBnpParibasMocker;
+        $this->systemPayMocker = $systemPayMocker;
     }
 
     /**
      * @When I confirm my order with Mercanet Bnp Paribas payment
      * @Given I have confirmed my order with Mercanet Bnp Paribas payment
      */
-    public function iConfirmMyOrderWithMercanetBnpParibasPayment()
+    public function iConfirmMyOrderWithSystemPayPayment()
     {
         $this->summaryPage->confirmOrder();
     }
@@ -72,10 +72,10 @@ final class MercanetBnpParibasContext implements Context
     /**
      * @When I sign in to Mercanet Bnp Paribas and pay successfully
      */
-    public function iSignInToMercanetBnpParibasAndPaySuccessfully()
+    public function iSignInToSystemPayAndPaySuccessfully()
     {
-        $this->mercanetBnpParibasMocker->completedPayment(function (){
-            $this->mercanetBnpParibasCheckoutPage->pay();
+        $this->systemPayMocker->completedPayment(function (){
+            $this->systemPayCheckoutPage->pay();
         });
     }
 
@@ -83,19 +83,19 @@ final class MercanetBnpParibasContext implements Context
      * @When I cancel my Mercanet Bnp Paribas payment
      * @Given I have cancelled Mercanet Bnp Paribas payment
      */
-    public function iCancelMyMercanetBnpParibasPayment()
+    public function iCancelMySystemPayPayment()
     {
-        $this->mercanetBnpParibasMocker->canceledPayment(function (){
-            $this->mercanetBnpParibasCheckoutPage->cancel();
+        $this->systemPayMocker->canceledPayment(function (){
+            $this->systemPayCheckoutPage->cancel();
         });
     }
 
     /**
      * @When I try to pay again Mercanet Bnp Paribas payment
      */
-    public function iTryToPayAgainMercanetBnpParibasPayment()
+    public function iTryToPayAgainSystemPayPayment()
     {
-        $this->mercanetBnpParibasMocker->completedPayment(function (){
+        $this->systemPayMocker->completedPayment(function (){
             $this->orderDetails->pay();
         });
     }

@@ -1,18 +1,18 @@
 <?php
 
 /**
- * This file was created by the developers from BitBag.
+ * This file was created by the developers from Waaz.
  * Feel free to contact us once you face any issues or want to start
  * another great project.
- * You can find more information about us on https://bitbag.shop and write us
- * an email on kontakt@bitbag.pl.
+ * You can find more information about us on https://www.studiowaaz.com and write us
+ * an email on developpement@studiowaaz.com.
  */
 
-namespace spec\BitBag\MercanetBnpParibasPlugin\Action;
+namespace spec\Waaz\SystemPayPlugin\Action;
 
-use BitBag\MercanetBnpParibasPlugin\Action\CaptureAction;
-use BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridgeInterface;
-use BitBag\MercanetBnpParibasPlugin\Legacy\Mercanet;
+use Waaz\SystemPayPlugin\Action\CaptureAction;
+use Waaz\SystemPayPlugin\Bridge\SystemPayBridgeInterface;
+use Waaz\SystemPayPlugin\Legacy\Mercanet;
 use Payum\Core\Model\Token;
 use Payum\Core\Payum;
 use Payum\Core\Reply\HttpResponse;
@@ -24,14 +24,14 @@ use Sylius\Component\Core\Model\PaymentInterface;
 use Sylius\Component\Order\Model\Order;
 
 /**
- * @author Patryk Drapik <patryk.drapik@bitbag.pl>
+ * @author Ibes Mongabure <developpement@studiowaaz.com>
  */
 final class CaptureActionSpec extends ObjectBehavior
 {
-    function let(Payum $payum, MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge)
+    function let(Payum $payum, SystemPayBridgeInterface $systemPayBridge)
     {
-        $this->beConstructedWith($payum, $mercanetBnpParibasBridge);
-        $this->setApi($mercanetBnpParibasBridge);
+        $this->beConstructedWith($payum, $systemPayBridge);
+        $this->setApi($systemPayBridge);
     }
 
     function it_is_initializable()
@@ -48,15 +48,15 @@ final class CaptureActionSpec extends ObjectBehavior
         Payum $payum,
         GenericTokenFactory $genericTokenFactory,
         Order $order,
-        MercanetBnpParibasBridgeInterface $mercanetBnpParibasBridge,
+        SystemPayBridgeInterface $systemPayBridge,
         Mercanet $mercanet
     )
     {
-        $mercanetBnpParibasBridge->getSecretKey()->willReturn('123');
-        $mercanetBnpParibasBridge->getEnvironment()->willReturn(Mercanet::TEST);
-        $mercanetBnpParibasBridge->getMerchantId()->willReturn('123');
-        $mercanetBnpParibasBridge->getKeyVersion()->willReturn('3');
-        $mercanetBnpParibasBridge->createMercanet('123')->willReturn($mercanet);
+        $systemPayBridge->getSecretKey()->willReturn('123');
+        $systemPayBridge->getEnvironment()->willReturn(Mercanet::TEST);
+        $systemPayBridge->getMerchantId()->willReturn('123');
+        $systemPayBridge->getKeyVersion()->willReturn('3');
+        $systemPayBridge->createMercanet('123')->willReturn($mercanet);
         $payment->getOrder()->willReturn($order);
         $payment->getCurrencyCode()->willReturn('EUR');
         $payment->getAmount()->willReturn(100);

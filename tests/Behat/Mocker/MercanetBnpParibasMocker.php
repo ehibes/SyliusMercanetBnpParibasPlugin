@@ -1,23 +1,23 @@
 <?php
 
 /**
- * This file was created by the developers from BitBag.
+ * This file was created by the developers from Waaz.
  * Feel free to contact us once you face any issues or want to start
  * another great project.
- * You can find more information about us on https://bitbag.shop and write us
- * an email on kontakt@bitbag.pl.
+ * You can find more information about us on https://www.studiowaaz.com and write us
+ * an email on developpement@studiowaaz.com.
  */
 
-namespace Tests\BitBag\MercanetBnpParibasPlugin\Behat\Mocker;
+namespace Tests\Waaz\SystemPayPlugin\Behat\Mocker;
 
-use BitBag\MercanetBnpParibasPlugin\Legacy\Mercanet;
-use BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridgeInterface;
+use Waaz\SystemPayPlugin\Legacy\Mercanet;
+use Waaz\SystemPayPlugin\Bridge\SystemPayBridgeInterface;
 use Sylius\Behat\Service\Mocker\Mocker;
 
 /**
- * @author Patryk Drapik <patryk.drapik@bitbag.pl>
+ * @author Ibes Mongabure <developpement@studiowaaz.com>
  */
-final class MercanetBnpParibasMocker
+final class SystemPayMocker
 {
     /**
      * @var Mocker
@@ -37,41 +37,41 @@ final class MercanetBnpParibasMocker
      */
     public function completedPayment(callable $action)
     {
-        $openMercanetBnpParibasWrapper = $this->mocker
-            ->mockService('bitbag.mercanet_bnp_paribas.bridge.mercanet_bnp_paribas_bridge', MercanetBnpParibasBridgeInterface::class);
+        $openSystemPayWrapper = $this->mocker
+            ->mockService('waaz.system_pay.bridge.system_pay_bridge', SystemPayBridgeInterface::class);
 
-        $openMercanetBnpParibasWrapper
+        $openSystemPayWrapper
             ->shouldReceive('createMercanet')
             ->andReturn(new Mercanet('test'));
 
-        $openMercanetBnpParibasWrapper
+        $openSystemPayWrapper
             ->shouldReceive('paymentVerification')
             ->andReturn(true);
 
-        $openMercanetBnpParibasWrapper
+        $openSystemPayWrapper
             ->shouldReceive('isPostMethod')
             ->andReturn(true);
 
-        $openMercanetBnpParibasWrapper
+        $openSystemPayWrapper
             ->shouldReceive('setSecretKey', 'setEnvironment', 'setMerchantId', 'setKeyVersion')
         ;
 
-        $openMercanetBnpParibasWrapper
+        $openSystemPayWrapper
             ->shouldReceive('getSecretKey')
             ->andReturn('test')
         ;
 
-        $openMercanetBnpParibasWrapper
+        $openSystemPayWrapper
             ->shouldReceive('getMerchantId')
             ->andReturn('test')
         ;
 
-        $openMercanetBnpParibasWrapper
+        $openSystemPayWrapper
             ->shouldReceive('getKeyVersion')
             ->andReturn('test')
         ;
 
-        $openMercanetBnpParibasWrapper
+        $openSystemPayWrapper
             ->shouldReceive('getEnvironment')
             ->andReturn(Mercanet::TEST)
         ;
@@ -86,41 +86,41 @@ final class MercanetBnpParibasMocker
      */
     public function canceledPayment(callable $action)
     {
-        $openMercanetBnpParibasWrapper = $this->mocker
-            ->mockService('bitbag.mercanet_bnp_paribas.bridge.mercanet_bnp_paribas_bridge', MercanetBnpParibasBridgeInterface::class);
+        $openSystemPayWrapper = $this->mocker
+            ->mockService('waaz.system_pay.bridge.system_pay_bridge', SystemPayBridgeInterface::class);
 
-        $openMercanetBnpParibasWrapper
+        $openSystemPayWrapper
             ->shouldReceive('createMercanet')
             ->andReturn(new Mercanet('test'));
 
-        $openMercanetBnpParibasWrapper
+        $openSystemPayWrapper
             ->shouldReceive('paymentVerification')
             ->andReturn(false);
 
-        $openMercanetBnpParibasWrapper
+        $openSystemPayWrapper
             ->shouldReceive('isPostMethod')
             ->andReturn(true);
 
-        $openMercanetBnpParibasWrapper
+        $openSystemPayWrapper
             ->shouldReceive('setSecretKey', 'setEnvironment', 'setMerchantId', 'setKeyVersion')
         ;
 
-        $openMercanetBnpParibasWrapper
+        $openSystemPayWrapper
             ->shouldReceive('getSecretKey')
             ->andReturn('test')
         ;
 
-        $openMercanetBnpParibasWrapper
+        $openSystemPayWrapper
             ->shouldReceive('getMerchantId')
             ->andReturn('test')
         ;
 
-        $openMercanetBnpParibasWrapper
+        $openSystemPayWrapper
             ->shouldReceive('getKeyVersion')
             ->andReturn('test')
         ;
 
-        $openMercanetBnpParibasWrapper
+        $openSystemPayWrapper
             ->shouldReceive('getEnvironment')
             ->andReturn(Mercanet::TEST)
         ;
