@@ -14,14 +14,13 @@ use Payum\Core\Reply\HttpResponse;
 
 /**
  * @author Ibes Mongabure <developpement@studiowaaz.com>
- * @author Ibes Mongabure <developpement@studiowaaz.com>
  */
 final class SimplePayment
 {
     /**
-     * @var Mercanet|object
+     * @var SystemPay|object
      */
-    private $mercanet;
+    private $systemPay;
 
     /**
      * @var string
@@ -32,11 +31,6 @@ final class SimplePayment
      * @var string
      */
     private $merchantId;
-
-    /**
-     * @var string
-     */
-    private $keyVersion;
 
     /**
      * @var string
@@ -59,9 +53,8 @@ final class SimplePayment
     private $automaticResponseUrl;
 
     /**
-     * @param Mercanet $mercanet
+     * @param SystemPay $systemPay
      * @param $merchantId
-     * @param $keyVersion
      * @param $environment
      * @param $amount
      * @param $targetUrl
@@ -70,9 +63,8 @@ final class SimplePayment
      * @param $automaticResponseUrl
      */
     public function __construct(
-        Mercanet $mercanet,
+        SystemPay $systemPay,
         $merchantId,
-        $keyVersion,
         $environment,
         $amount,
         $targetUrl,
@@ -83,10 +75,9 @@ final class SimplePayment
     {
         $this->automaticResponseUrl = $automaticResponseUrl;
         $this->transactionReference = $transactionReference;
-        $this->mercanet = $mercanet;
+        $this->systemPay = $systemPay;
         $this->environment = $environment;
         $this->merchantId = $merchantId;
-        $this->keyVersion = $keyVersion;
         $this->amount = $amount;
         $this->currency = $currency;
         $this->targetUrl = $targetUrl;
@@ -94,51 +85,23 @@ final class SimplePayment
 
     public function execute()
     {
-        $this->resolveEnvironment();
+        $this->systemPay->setFields([
+          'site_id' => $this->merchantId,
+          'ctx_mode' => $this->environment,
+          'amount' => $this->amount,
+          'currency' => CurrencyNumber::getByCode($this->currency),
+          'trans_id' => sprintf('%06d', $this->transactionReference),
+          'url_return' => $this->targetUrl,
+          //'url_check' => $this->automaticResponseUrl,
+          'action_mode' => 'INTERACTIVE',
+          'page_action'=> 'PAYMENT',
+          'payment_config' => 'SINGLE'
+        ]);
 
-        $this->mercanet->setMerchantId($this->merchantId);
-        $this->mercanet->setInterfaceVersion(Mercanet::INTERFACE_VERSION);
-        $this->mercanet->setKeyVersion($this->keyVersion);
-        $this->mercanet->setAmount($this->amount);
-        $this->mercanet->setCurrency($this->currency);
-        $this->mercanet->setOrderChannel("INTERNET");
-        $this->mercanet->setTransactionReference($this->transactionReference);
-        $this->mercanet->setNormalReturnUrl($this->targetUrl);
-        $this->mercanet->setAutomaticResponseUrl($this->automaticResponseUrl);
 
-        $this->mercanet->validate();
-
-        $response = $this->mercanet->executeRequest();
+        // doit générer du html qui redirige vers la banque
+        $response = $this->systemPay->executeRequest();
 
         throw new HttpResponse($response);
-    }
-
-    /**
-     * @throws \InvalidArgumentException
-     */
-    private function resolveEnvironment()
-    {
-        if (Mercanet::TEST === $this->environment) {
-            $this->mercanet->setUrl(Mercanet::TEST);
-
-            return;
-        }
-
-        if (Mercanet::PRODUCTION === $this->environment) {
-            $this->mercanet->setUrl(Mercanet::PRODUCTION);
-
-            return;
-        }
-
-        if (Mercanet::SIMULATION === $this->environment) {
-            $this->mercanet->setUrl(Mercanet::SIMULATION);
-
-            return;
-        }
-
-        throw new \InvalidArgumentException(
-            sprintf('The "%s" environment is invalid. Expected %s or %s',
-                $this->environment, Mercanet::PRODUCTION, Mercanet::TEST)
-        );
     }
 }

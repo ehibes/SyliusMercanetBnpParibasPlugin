@@ -104,25 +104,23 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface
 
         $secretKey = $this->systemPayBridge->getSecretKey();
 
-        $mercanet = $this->systemPayBridge->createMercanet($secretKey);
+        $mercanet = $this->systemPayBridge->createSystemPay($secretKey);
 
         $environment = $this->systemPayBridge->getEnvironment();
         $merchantId = $this->systemPayBridge->getMerchantId();
-        $keyVersion = $this->systemPayBridge->getKeyVersion();
 
         $automaticResponseUrl = $notifyToken->getTargetUrl();
         $currencyCode = $payment->getCurrencyCode();
         $targetUrl = $request->getToken()->getTargetUrl();
         $amount = $payment->getAmount();
 
-        $transactionReference = "MercanetWS" . uniqid() . "OR" . $payment->getOrder()->getNumber();
+        $transactionReference = $payment->getOrder()->getId();
 
         $model['transactionReference'] = $transactionReference;
 
         $simplePayment = new SimplePayment(
             $mercanet,
             $merchantId,
-            $keyVersion,
             $environment,
             $amount,
             $targetUrl,
